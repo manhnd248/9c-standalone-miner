@@ -1,6 +1,28 @@
 @echo off
 
-net.exe session 1>NUL 2>NUL || (Echo This script requires elevated rights. & Exit /b 1)
+REM -------------------------------------
+REM  --> Check for permissions
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+REM --> If error flag set, we do not have admin.
+if '%errorlevel%' NEQ '0' (
+    echo Requesting administrative privileges...
+    goto UACPrompt
+) else ( goto gotAdmin )
+
+:UACPrompt
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    set params = %*:"=""
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
+
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+    exit /B
+
+:gotAdmin
+    pushd "%CD%"
+    CD /D "%~dp0"
+REM --------------------------------------
 
 set DIR_WSL="C:\Windows\System32\wsl.exe"
 set DIR_CHOCO="%ALLUSERSPROFILE%\chocolatey\choco.exe"
@@ -21,7 +43,7 @@ if exist ".reboot" (
 ) else (
     if exist %DIR_WSL% (
         echo    --WSL: Installed
-        set WSL=true
+        set WSL=false
     ) else (
         echo    --WSL: Not Installed
         set WSL=false
@@ -59,7 +81,16 @@ if %WSL% == false (
     echo.
     echo  -WSL: Installing...
     echo -------------------------------------
-    powershell.exe -noprofile -executionpolicy bypass -file .\win10-scripts\WSL2_install.ps1
+    if exist ".\win10-scripts\WSL2_install.ps1" (
+        set WSLFILE=".\win10-scripts\WSL2_install.ps1"
+    )
+    if exist "WSL2_install.ps1" (
+        set WSLFILE="WSL2_install.ps1"
+    ) else (
+        curl.exe -o WSL2_install.ps1 https://raw.githubusercontent.com/CryptoKasm/9c-standalone-miner/master/win10-scripts/WSL2_Install.ps1
+        set WSLFILE="WSL2_install.ps1"
+    )
+    powershell.exe -noprofile -executionpolicy bypass -file %WSLFILE%
     echo -------------------------------------
     if exist ".reboot" (
         goto RebootRequired 
@@ -74,7 +105,7 @@ if %CHOCO% == false (
     echo.
     echo  -Chocolatey: Installing...
     echo -------------------------------------
-    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+    REM @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
     echo -------------------------------------
     echo  -Chocolatey: Finished
 )
@@ -85,7 +116,7 @@ if %DOCKER% == false (
     echo.
     echo  -Docker and Compose: Installing...
     echo -------------------------------------
-    choco install docker-desktop
+    REM choco install -y docker-desktop
     echo -------------------------------------
     echo  -Docker and Compose: Finished
 )
@@ -105,9 +136,9 @@ echo --------------------------------------------
 echo  WSL: DOCKER - SETUP
 echo --------------------------------------------
 echo.
-echo Please enter the password you selected during the Distro Account Creationz
-bash -c "sudo apt update && sudo apt upgrade && sudo apt install git unzip zip curl"
-bash -c "cd $HOME && git clone https://github.com/CryptoKasm/9c-standalone-miner.git"
+echo Please enter the password you selected during the Distro Account Creation
+REM bash -c "sudo apt update && sudo apt upgrade && sudo apt install -y git unzip zip curl"
+REM bash -c "cd $HOME && git clone https://github.com/CryptoKasm/9c-standalone-miner.git"
 goto End
 
 :End
