@@ -4,7 +4,7 @@ source settings.conf
 echo "--------------------------------------------"
 echo "  Nine Chronicles - Standalone Miner"
 echo "  Version 1.1.1-alpha"
-echo "--------------------------------------------\n"
+echo "--------------------------------------------"
 
 # Test: Root Privileges
 if [ "$EUID" -ne 0 ]
@@ -21,15 +21,29 @@ echo "Updating repository..."
 #git pull https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
 
 # Setting docker-compose file
-rm ./docker-compose.yml
-cp docker/docker-compose.$NC_CONTAINERS.yml ./docker-compose.yml
+#rm ./docker-compose.yml
+#cp docker/docker-compose.$NC_CONTAINERS.yml ./docker-compose.yml
+
+# Check for .env file
+if [ -f ".env" ]; then
+    echo "      -Credentials: Not Found"
+    echo "      -Credentials: Creating File"
+    echo
+    echo " Please enter your Nine Chronicles Private Key"
+    read -p "> " NCPRIVKEY
+    echo "NINECHRONICLES_PRIVATE_KEY=$NCPRIVKEY" >> .env
+    echo "Thank you! You can change this by editing the .env file"
+    echo 
+else
+    echo "      -Creditials Found"
+fi
 
 # Update: Snapshot
-./linux-scripts/refresh-snapshot.sh $NC_CONTAINERS
+#./linux-scripts/refresh-snapshot.sh $NC_CONTAINERS
 
 echo "Starting docker containers..."
 # Start: Docker Containers
-docker-compose up -d
+#docker-compose --compatibility up -d
 
 
 # Display status of all containers
@@ -43,6 +57,6 @@ echo "--------------------------------------------"
 echo "  Maintained by CryptoKasm"
 echo "  Github - https://github.com/CryptoKasm"
 echo "  Support - https://discord.gg/k6z2GS4yh2"
-echo "--------------------------------------------\n"
+echo "--------------------------------------------"
 
 read -p "  Press any key to exit..."

@@ -1,11 +1,8 @@
-# Ignore Configuration
-configuration
+# Ignore Private Key
+.env
 
 # Ignore Store Keys
 keystore/*
 
-# Ignore Config
-settings.conf
-
-# Ignore Notes
-archive
+# Ignore ckbin
+ckbin
