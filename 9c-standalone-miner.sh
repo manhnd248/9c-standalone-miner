@@ -18,29 +18,15 @@ fi
 
 # Update: Repository
 echo "Updating repository..."
-git pull https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
+#git pull https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
 
 
 # Update: Snapshot
-sh ./linux-scripts/refresh-snapshot.sh $NC_CONTAINERS
+./linux-scripts/refresh-snapshot.sh $NC_CONTAINERS
 
 echo "Starting docker containers..."
 # Start: Docker Containers
-if [[ NC_VOLUMES == "1" ]]  then
-  docker-compose -f docker/docker-compose.1.yml up -d
-elif [[ NC_VOLUMES == "2" ]]    then
-  docker-compose -f docker/docker-compose.2.yml up -d
-elif [[ NC_VOLUMES == "3" ]]    then
-  docker-compose -f docker/docker-compose.3.yml up -d
-elif [[ NC_VOLUMES == "4" ]]    then
-  docker-compose -f docker/docker-compose.4.yml up -d
-elif [[ NC_VOLUMES == "5" ]]    then
-  docker-compose -f docker/docker-compose.5.yml up -d
-elif [[ NC_VOLUMES == "6" ]]    then
-  docker-compose -f docker/docker-compose.6.yml up -d
-else
-  docker-compose -f docker/docker-compose.1.yml up -d
-fi
+docker-compose -f docker/docker-compose.$NC_CONTAINERS.yml up -d
 
 
 # Display status of all containers
