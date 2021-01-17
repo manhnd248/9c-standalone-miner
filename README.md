@@ -16,9 +16,7 @@ This repository is an attempt to make it simpler for miners to run multiple cont
 # Setup Distro & Docker Containers
 1. Open CMD (as administrator)
 2. RUN: wsl.exe
-2. RUN:
-    cd $HOME/9c-standalone-miner
-    sudo /9c-standalone-miner.sh
+2. RUN: cd $HOME/9c-standalone-miner && sudo /9c-standalone-miner.sh
 
 # Monitor
 1. Open Docker-Desktop on Windows
