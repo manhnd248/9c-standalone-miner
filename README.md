@@ -8,10 +8,11 @@ This repository is an attempt to make it simpler for miners to run multiple cont
 
 ## Windows 10 x64 Systems: Version 1903 or higher, with Build 18362 or higher.
 
-# Setup PC: WSL, Distro, Choco, & Docker
-1. Run: setup_windows.cmd (as administrator) **Will be running again later**
-2. Reboot PC
-3. Run: setup_windows.cmd (as administrator) **again**
+# Install: WSL, Ubuntu, Choco, & Docker
+1. curl.exe -o setup_windows.cmd https://raw.githubusercontent.com/CryptoKasm/9c-standalone-miner/master/setup_windows.cmd
+2. Run: setup_windows.cmd (as administrator) **Will be running again later**
+3. Reboot PC
+4. Run: setup_windows.cmd (as administrator) **again**
 
 # Setup Distro & Docker Containers
 1. Open CMD (as administrator)
