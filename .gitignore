@@ -1,0 +1,11 @@
+# Ignore Configuration
+configuration
+
+# Ignore Store Keys
+keystore/*
+
+# Ignore Snapshots
+latest-snapshot/*
+
+# Ignore Notes
+archive
