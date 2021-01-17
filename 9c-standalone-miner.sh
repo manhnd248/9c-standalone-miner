@@ -18,7 +18,7 @@ fi
 
 # Update: Repository
 echo "Updating repository..."
-#git pull https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
+git pull https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
 
 # Checking permissions
 sudo chmod +x 9c-standalone-miner.sh
