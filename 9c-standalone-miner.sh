@@ -30,6 +30,8 @@ cp docker/docker-compose.$NC_CONTAINERS.yml ./docker-compose.yml
 
 # Check for .env file
 if [ -f ".env" ]; then
+    echo "      -Creditials Found" 
+else
     echo "      -Credentials: Not Found"
     echo "      -Credentials: Creating File"
     echo
@@ -38,8 +40,6 @@ if [ -f ".env" ]; then
     echo "NINECHRONICLES_PRIVATE_KEY=$NCPRIVKEY" >> .env
     echo "Thank you! You can change this by editing the .env file"
     echo 
-else
-    echo "      -Creditials Found"
 fi
 
 # Update: Snapshot
