@@ -9,16 +9,21 @@ This repository is an attempt to make it simpler for miners to run multiple cont
 ## Windows 10 x64 Systems: Version 1903 or higher, with Build 18362 or higher.
 
 # Setup PC: WSL, Distro, Choco, & Docker
-1. Run: setup_windows.cmd **Will be running again later**
+1. Run: setup_windows.cmd (as administrator) **Will be running again later**
 2. Reboot PC
-3. Run: setup_windows.cmd **again**
+3. Run: setup_windows.cmd (as administrator) **again**
 
 # Setup Distro & Docker Containers
-1. Open Terminal
+1. Open CMD (as administrator)
 2. RUN: wsl.exe
 2. RUN:
     cd $HOME/9c-standalone-miner
     sudo /9c-standalone-miner.sh
+
+# Monitor
+1. Open Docker-Desktop on Windows
+2. You can start/stop/restart/monitor your containers from here. As well as watch log output!
+
 
 ## Linux x64 Systems
 
