@@ -4,5 +4,8 @@ configuration
 # Ignore Store Keys
 keystore/*
 
+# Ignore Config
+settings.conf
+
 # Ignore Notes
 archive

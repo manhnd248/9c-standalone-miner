@@ -6,9 +6,9 @@ echo "--------------------------------------------\n"
 
 # Build: Clean Docker Environment (Delete/Start/Stop Containers)
 echo " -> Task-Start: Cleaning docker environment..."
-docker-compose -f docker/docker-compose.$1.yml down -v      # Stops & deletes environment **snapshot**
-docker-compose -f docker/docker-compose.$1.yml up -d        # Restarts to recreate clean environment
-docker-compose -f docker/docker-compose.$1.yml stop         # Stops cleaned environment for snapshot update
+docker-compose down -v      # Stops & deletes environment **snapshot**
+docker-compose up -d        # Restarts to recreate clean environment
+docker-compose stop         # Stops cleaned environment for snapshot update
 echo " -> Task-End: Cleaning docker environment...\n"
 
 # Download Latest Nine Chronicles Snapshot

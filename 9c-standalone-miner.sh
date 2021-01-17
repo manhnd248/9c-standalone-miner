@@ -20,13 +20,16 @@ fi
 echo "Updating repository..."
 #git pull https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
 
+# Setting docker-compose file
+rm ./docker-compose.yml
+cp docker/docker-compose.$NC_CONTAINERS.yml ./docker-compose.yml
 
 # Update: Snapshot
 ./linux-scripts/refresh-snapshot.sh $NC_CONTAINERS
 
 echo "Starting docker containers..."
 # Start: Docker Containers
-docker-compose -f docker/docker-compose.$NC_CONTAINERS.yml up -d
+docker-compose up -d
 
 
 # Display status of all containers

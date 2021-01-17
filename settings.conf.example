@@ -1,0 +1,17 @@
+# Personalized Secret Key
+NC_SECRET_KEY=POST_YOUR_KEY_HERE
+
+# Docker Containers [1-6]
+NC_CONTAINERS=2 
+
+# Auto Restart [True/False]
+NC_AUTORESTART=True
+
+# Auto Restart Timer [Minutes]
+NC_AUTORESTARTTIMER=60
+
+# Logging [True/False]
+NC_LOGGING=True
+
+# Display Log After Startup [True/False]
+NC_DISPLAYLOG=True
