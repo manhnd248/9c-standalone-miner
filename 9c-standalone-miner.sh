@@ -17,8 +17,8 @@ fi
 # docker-compose
 
 # Update: Repository
-echo "Updating repository..."
-git pull --rebase https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
+#echo "Updating repository..."
+#git pull --rebase https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
 
 # Checking permissions
 sudo chmod +x 9c-standalone-miner.sh
