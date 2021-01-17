@@ -1,6 +1,9 @@
 # Ignore Private Key
 .env
 
+# Ignore Latest-Snapshot
+latest-snapshot
+
 # Ignore Store Keys
 keystore/*
 

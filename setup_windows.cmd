@@ -2,10 +2,10 @@
 
 net.exe session 1>NUL 2>NUL || (Echo This script requires elevated rights. & Exit /b 1)
 
-set DIR_WSL="aC:\Windows\System32\wsl.exe"
-set DIR_CHOCO="a%ALLUSERSPROFILE%\chocolatey\choco.exe"
-set DIR_DOCKER="aC:\Program Files\Docker\Docker\Docker Desktop.exe"
-set DIR_COMPOSE="aC:\Program Files\Docker\Docker\resources\bin\docker-compose"
+set DIR_WSL="C:\Windows\System32\wsl.exe"
+set DIR_CHOCO="%ALLUSERSPROFILE%\chocolatey\choco.exe"
+set DIR_DOCKER="C:\Program Files\Docker\Docker\Docker Desktop.exe"
+set DIR_COMPOSE="C:\Program Files\Docker\Docker\resources\bin\docker-compose"
 
 echo --------------------------------------------
 echo  9C-STANDALONE-MINER - WINDOWS 10 SETUP
@@ -59,7 +59,7 @@ if %WSL% == false (
     echo.
     echo  -WSL: Installing...
     echo -------------------------------------
-    REM powershell.exe -noprofile -executionpolicy bypass -file .\win10-scripts\WSL2_install.ps1
+    powershell.exe -noprofile -executionpolicy bypass -file .\win10-scripts\WSL2_install.ps1
     echo -------------------------------------
     if exist ".reboot" (
         goto RebootRequired 
@@ -74,7 +74,7 @@ if %CHOCO% == false (
     echo.
     echo  -Chocolatey: Installing...
     echo -------------------------------------
-    REM @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
     echo -------------------------------------
     echo  -Chocolatey: Finished
 )
@@ -85,11 +85,11 @@ if %DOCKER% == false (
     echo.
     echo  -Docker and Compose: Installing...
     echo -------------------------------------
-    REM choco install docker-desktop
+    choco install docker-desktop
     echo -------------------------------------
     echo  -Docker and Compose: Finished
 )
-goto End
+goto PrepareWSL
 
 :RebootRequired
 echo.
@@ -98,14 +98,6 @@ echo  Please reboot your PC and run this script again to complete installation!
 echo.
 pause 
 EXIT /B 
-
-:End
-echo.
-echo --------------------------------------------
-echo  WINDOWS 10 SETUP - COMPLETE
-echo --------------------------------------------
-echo.
-pause
 
 :PrepareWSL
 echo.
@@ -116,3 +108,13 @@ echo.
 echo Please enter the password you selected during the Distro Account Creationz
 bash -c "sudo apt update && sudo apt upgrade && sudo apt install git unzip zip curl"
 bash -c "cd $HOME && git clone https://github.com/CryptoKasm/9c-standalone-miner.git"
+goto End
+
+:End
+echo.
+echo --------------------------------------------
+echo  WINDOWS 10 SETUP - COMPLETE
+echo --------------------------------------------
+echo.
+
+pause
