@@ -16,7 +16,7 @@ This repository is an attempt to make it simpler for miners to run multiple cont
 # Setup Distro & Docker Containers
 1. Open CMD (as administrator)
 2. RUN: wsl.exe
-2. RUN: cd $HOME/9c-standalone-miner && sudo /9c-standalone-miner.sh
+2. RUN: cd $HOME/9c-standalone-miner && sudo ./9c-standalone-miner.sh
 
 # Monitor
 1. Open Docker-Desktop on Windows
@@ -28,12 +28,9 @@ This repository is an attempt to make it simpler for miners to run multiple cont
 # Setup
 
 1. Install Docker.
-1. Install Docker Compose.
-1. Git clone this repository
-1. Copy the .env.example to .env and fill in your details
-1. Open a terminal to where you cloned this repository
-1. Run: `./refresh-snapshot.sh`
-1. Run: `docker-compose up -d`
+2. Install Docker Compose.
+3. Git clone this repository
+4. Run: `sudo ./9c-standalone-miner.sh`
 
 # Monitoring
 
