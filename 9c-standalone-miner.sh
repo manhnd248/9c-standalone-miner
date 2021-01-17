@@ -20,6 +20,10 @@ fi
 echo "Updating repository..."
 #git pull https://www.github.com/CryptoKasmDev/9c-standalone-miner.git 
 
+# Checking permissions
+sudo chmod +x 9c-standalone-miner.sh
+sudo chmod +x linux-scripts/refresh-snapshot.sh
+
 # Setting docker-compose file
 rm ./docker-compose.yml
 cp docker/docker-compose.$NC_CONTAINERS.yml ./docker-compose.yml
