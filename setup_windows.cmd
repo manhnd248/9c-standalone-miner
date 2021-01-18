@@ -96,6 +96,10 @@ if %WSL% == false (
         goto RebootRequired 
     ) else (
         echo  -WSL: Finished
+        echo.
+        echo Please finish Ubuntu setup before continuing!
+        echo.
+        pause
         goto InstallChocolatey
     )
 )
