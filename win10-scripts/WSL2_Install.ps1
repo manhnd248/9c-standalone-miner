@@ -194,7 +194,7 @@ function Select-Distro () {
         }
         Write-Host(($i + 1).ToString() + " " + ($distrolist.Name)[$i] + " " + $installedTxt)
     }
-    $distroChoice = 2
+    $distroChoice = 1
     $choiceNum = 0
     if (($distroChoice.Length -ne 0) -and ($distroChoice -match '^\d+$')) {
         if (($distroChoice -gt 0) -and ($distroChoice -le $distrolist.Length)) {

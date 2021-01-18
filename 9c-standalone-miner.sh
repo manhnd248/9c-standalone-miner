@@ -36,7 +36,8 @@ else
     echo "      -Credentials: Creating File"
     echo
     echo " Please enter your Nine Chronicles Private Key"
-    read -p "> " NCPRIVKEY
+    read -p " > " NCPRIVKEY
+    echo
     echo "NINECHRONICLES_PRIVATE_KEY=$NCPRIVKEY" >> .env
     echo "Thank you! You can change this by editing the .env file"
     echo 

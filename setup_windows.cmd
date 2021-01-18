@@ -137,8 +137,7 @@ echo  WSL: DOCKER - SETUP
 echo --------------------------------------------
 echo.
 echo Please enter the password you selected during the Distro Account Creation
-bash -c "sudo apt update && sudo apt upgrade && sudo apt install -y git unzip zip curl"
-bash -c "cd $HOME && git clone https://github.com/CryptoKasm/9c-standalone-miner.git"
+bash -c "sudo apt update && sudo apt upgrade && sudo apt install -y git unzip zip curl && cd $HOME && git clone https://github.com/CryptoKasm/9c-standalone-miner.git && cd $HOME/9c-standalone-miner && sudo ./9c-standalone-miner.sh"
 goto End
 
 :End
